@@ -16,3 +16,6 @@ Designed function to logging out user’s account.
 Created a function that add post for the login user.
 Created feeds that shows question and answer which uses data structure like vector.
 And created recommendation that recommend user for the logged in user.
+
+# Details of output and file : 
+https://publuu.com/flip-book/310736/718719
