@@ -1,5 +1,5 @@
 # Detailed Information about the project : 
-link to document: https://publuu.com/flip-book/310736/718719
+link to the document: https://publuu.com/flip-book/310736/718719
 
 # Individual Contibution
 
