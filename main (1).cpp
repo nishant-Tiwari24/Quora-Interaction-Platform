@@ -375,7 +375,40 @@ void followUser(string user,string currUser) {
     string name, username, dob, email, profession, description, password, followers, following, blog;
     ifstream read;
     read.open("registration/" + user + ".txt");
-    
+        getline(read, name);
+        getline(read, username);
+        getline(read, dob);
+        getline(read, email);
+        getline(read, profession);
+        getline(read, description);
+        getline(read, password);
+        getline(read, following);
+        getline(read, followers);
+        getline(read, blog);
+        followers = currUser + followers;
+        read.close();
+        ofstream write;
+        write.open("registration/" + user + ".txt");
+        write<< name <<"\n" << username <<"\n" << dob <<"\n" <<email <<"\n" <<profession << "\n" <<description << "\n" << password << "\n" <<followers << "\n" <<following << "\n" << blog << "\n";
+        write.close();
+
+    read.open("registration/" + cuurUser + ".txt");
+        getline(read, name);
+        getline(read, username);
+        getline(read, dob);
+        getline(read, email);
+        getline(read, profession);
+        getline(read, description);
+        getline(read, password);
+        getline(read, following);
+        getline(read, followers);
+        getline(read, blog);
+        following = currUser + following;
+        read.close();
+        ofstream write;
+        write.open("registration/" + currUser + ".txt");
+        write<< name <<"\n" << username <<"\n" << dob <<"\n" <<email <<"\n" <<profession << "\n" <<description << "\n" << password << "\n" <<followers << "\n" <<following << "\n" << blog << "\n";
+        write.close();
     
 }
 
