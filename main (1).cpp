@@ -36,7 +36,7 @@ void showFeed(string user);    // part of show feed
 void Recommend(string user);   // part of search
 void AddPost(Profile &N, string user);// adding post
 // void AddPost(Profile &N);
-void search();
+void search(string currentUser);
 void displayDetails(string user);
 // void Dashboard(Profile &N);
 string login_register();
@@ -132,7 +132,7 @@ int main(void) {
 
                         if(ch == 1)
                         {
-                            search();
+                            search(current_user);
                             // break;
                             cout << "(Press 0 to go back)"<< endl;
                         }
@@ -287,7 +287,7 @@ void settings(void)
 }
 
 // Searching user profile
-void search(void)
+void search(string currentUser)
 {
     system("cls");
     SearchingPanel obj;
@@ -302,7 +302,7 @@ void search(void)
     {
         cout << "\t\t\t\t\t\t\t" << GREEN << "Enter the Username to Search: "<< RESET;
         
-        displayDetails(c);
+        displayDetails(c,currentUser);
     }
     else
     {
@@ -312,7 +312,7 @@ void search(void)
 
 // display searched user profile
 // ------------------------------------- make it --------------------------------
-void displayDetails(string user)
+void displayDetails(string user,string currentUser)
 {
     system("cls");
     cout << "Searched User Details" << endl<<endl;
@@ -338,8 +338,45 @@ void displayDetails(string user)
 
         getline(read, following);
         cout << "Following: " << following << endl;
+        stringstream ss(following);
+            vector<string> words;
+            string word;
+            int i;
+            while(ss >> word)
+            {
+                words.push_back(word);
+            }
+            for(i=0 ; i<words.size() ; i++ ) {
+                if(words[i] == currentUser) {
+                    mutual();
+                    break;
+                }   
+            }
+            
         getline(read, followers);
+        cout << "Followers: " << followers << endl;
+        if(i>=words.size()) {
+                cout<<"press 1 to follow and 0 to continue"<<endl;
+                int choice;
+                cin>>choice;
+                if(choice == 1) {
+                    followUser(current,currentUser);
+                }
+                else if(choice == 0) {
+                    return ;
+                }
+                
+            }
+        
     }
+}
+
+void followUser(string user,string currUser) {
+    string str;
+    ifstream read;
+    read.open("registration/" + user + ".txt");
+    
+    
 }
 
 
