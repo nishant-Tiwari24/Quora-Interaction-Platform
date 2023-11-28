@@ -24,7 +24,7 @@ public:
 
     unordered_map<int, vector<string>> detailsToHashTable()
     {
-        ifstream read("login.txt");
+        ifstream read("logindata.txt");
         if (!read.is_open())
         {
             cerr << "Error opening file\n";
@@ -38,7 +38,7 @@ public:
             a = returnAscii(username);
             Users[a].insert(Users[a].end(), username);
             getline(read, username);
-            getline(read, username);
+            // getline(read, username);
         }
         read.close();
         return Users;

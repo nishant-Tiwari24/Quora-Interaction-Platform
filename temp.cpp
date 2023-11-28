@@ -15,11 +15,23 @@
 #include "AddingPost.cpp"
 #include "allUsers.h"
 #include "loginregister.cpp"
+//colors
+#define RESET   "\033[0m"
+#define RED     "\033[1;31m"
+#define GREEN   "\033[1;32m"
+#define YELLOW  "\033[1;33m"
+#define BLUE    "\033[1;34m"
+#define MAGENTA "\033[1;35m"
+#define CYAN    "\033[1;36m"
+//font size
+#define LARGER  "\033[1m"
+#define NORMAL  "\033[0m"
+
 using namespace std;
 
 void MainDashboard(void);
 void showProfile(void); // part of user profile
-void update(Profile N); // part of user profile
+void update(Profile &N, string user); // part of user profile
 void showFeed(void);    // part of show feed
 void Recommend(void);   // part of search
 void AddPost(Profile &N);// adding post
@@ -39,21 +51,31 @@ int main(void) {
     }
     int choice;
     Profile N;
-    N.getDetails();
-    int flag;
+    N.getDetails(current_user);
+    int flag = 0;
 
     do {
         system("cls");
         MainDashboard();
-        cout << endl << endl <<"Enter Your choice: " << endl;
+        cout << endl;
+        cout <<"\t\t\t\t\t\t\t"<< GREEN << "Enter Your choice:  " << RESET;
         cin >> choice;
 
         switch (choice) {
             case 1: // profile
                 system("cls");
-                cout << "1. View Profile" << endl;
-                cout << "2. Update Profile" << endl;
-                cout << "Enter 0 to go back: " << endl;
+                // cout << "\t\t\t\t\t\t\033[1;36m******************************************************************************\033[0m" << endl;
+                // cout << "\t\t\t\t\t\t\033[1;36m*                                    \033[0m"<<MAGENTA<<"Profile"<<RESET<<"\033[1;36m                                 *\033[0m" << endl;
+                // cout << "\t\t\t\t\t\t\033[1;36m*                            `````````````````````                           *\033[0m" << endl;
+                // cout << "\t\t\t\t\t\t\033[1;36m******************************************************************************\033[0m" << endl;
+                // cout<<endl;
+                // cout << "\t\t\t\t\t\t\t1." << BLUE<< "View Profile" << RESET << endl;
+                // cout << "\t\t\t\t\t\t\t2." << RED << "Update Profile"<< RESET << endl;
+                // cout << "\t\t\t\t\t\t\t" << CYAN<<"Enter 0 to go back: "<<RESET;
+
+                cout << "1. View Profile"<<endl;
+                cout << "2. Update Profile"<<endl;
+                cout << "Enter 0 to go back";
                 int profile_choice;
                 cin >> profile_choice;
 
@@ -70,7 +92,7 @@ int main(void) {
                     }
                     else if(profile_choice == 2)
                     {
-                        update(N);
+                        update(N, current_user);
                         cout << "(Press 0 to go back)";
                     }
                     else if(profile_choice == 0)
@@ -172,6 +194,22 @@ int main(void) {
     return 0;
 }
 
+// display main dashboard
+void MainDashboard(void)
+{
+    cout << "\t\t\t\t\t\t\033[1;36m******************************************************************************\033[0m" << endl;
+    cout << "\t\t\t\t\t\t\033[1;36m*                               \033[0m"<<MAGENTA<<"Main Dashboard"<<RESET<<"\033[1;36m                               *\033[0m" << endl;
+    cout << "\t\t\t\t\t\t\033[1;36m*                            `````````````````````                           *\033[0m" << endl;
+    cout << "\t\t\t\t\t\t\033[1;36m******************************************************************************\033[0m" << endl;
+    cout<<endl;
+    // cout << MAGENTA << "Main Dashboard" << RESET << endl;
+    cout << "\t\t\t\t\t\t\t1. " << YELLOW << "Your Profile" << RESET << endl;  // view and update
+    cout << "\t\t\t\t\t\t\t2. " << BLUE << "Search People" << RESET << endl; // search other people and follow
+    cout << "\t\t\t\t\t\t\t3. " << GREEN << "Add Post" << RESET << endl;
+    cout << "\t\t\t\t\t\t\t4. " << CYAN << "Show Feeds" << RESET << endl;
+    cout << "\t\t\t\t\t\t\t5. " << RED << "Settings" << RESET << endl;    // logout
+}
+
 // register and login
 string login_register(){
     system("cls");
@@ -194,7 +232,7 @@ string login_register(){
         if(choice == 1)
         {
             cout << "Loading LOGIN page" << endl;
-            Sleep(2000);
+            Sleep(1000);
             a = p.login();
             if(a.length() != 0)
                 break;
@@ -281,17 +319,7 @@ void displayDetails(string user)
     }
 }
 
-// display main dashboard
-void MainDashboard(void)
-{
-    cout << "Main Dash board" << endl;
-    cout << "1. Your Profile" << endl;  // view and update
-    cout << "2. Search people" << endl; // search other people and follow
-    cout << "3. Add Post" << endl;
-    cout << "4. Show Feeds" << endl;
-    cout << "5. Setting" << endl;    // logout
-    cout << "6. Exit";
-}
+
 
 
 // add new post to feed
@@ -420,7 +448,7 @@ void Recommend()
     cout << "done\n";
 }
 
-void update(Profile N)
+void update(Profile &N, string user)
 {
         system("cls");
         cout << "1. User name"<<endl;
@@ -437,17 +465,17 @@ void update(Profile N)
                 cout << "Enter the User Name: ";
                 cin.ignore();
                 getline(cin, changing_string);
-                N.updateUser(changing_string, 1);
+                N.updateUser(changing_string, 1, user);
                 break;
             case 2:
                 cout << "Enter the Mail: ";
                 cin >> changing_string;
-                N.updateUser(changing_string, 1);
+                N.updateUser(changing_string, 2, user);
                 break;
             case 3:
                 cout << "Enter about Yourself: ";
                 cin >> changing_string;
-                N.updateUser(changing_string, 1);
+                N.updateUser(changing_string, 3, user);
                 break;
         }
         

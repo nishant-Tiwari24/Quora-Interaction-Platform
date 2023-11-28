@@ -47,7 +47,6 @@ class page
         ofstream ld("logindata.txt",ios::app);
         ld<<userid<<endl;
         ld<<createpass<<endl;
-        ld<<endl;
         cout<<"Signing up......"<<endl;
         cout<<"SIGN-UP completed";
         Sleep(1500);
@@ -91,7 +90,7 @@ class page
                 if (storedPass == password) {
                     cout<<"Logging in......."<<endl;
                     cout << "LOGIN Successful" << endl;
-                    Sleep(1500);
+                    // Sleep(1500);
                     system("cls");
                     return usrname;
                 }
