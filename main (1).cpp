@@ -372,7 +372,7 @@ void displayDetails(string user,string currentUser)
 }
 
 void followUser(string user,string currUser) {
-    string str;
+    string name, username, dob, email, profession, description, password, followers, following, blog;
     ifstream read;
     read.open("registration/" + user + ".txt");
     
