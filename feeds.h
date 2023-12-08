@@ -1,4 +1,4 @@
-#ifndef FEEDS_H  // Include guard
+#ifndef FEEDS_H // Include guard
 #define FEEDS_H
 
 #include <iostream>
@@ -10,24 +10,23 @@
 #include "UserProfile.h"
 using namespace std;
 
-#define RESET   "\033[0m"
-#define RED     "\033[1;31m"
-#define GREEN   "\033[1;32m"
-#define YELLOW  "\033[1;33m"
-#define BLUE    "\033[1;34m"
+#define RESET "\033[0m"
+#define RED "\033[1;31m"
+#define GREEN "\033[1;32m"
+#define YELLOW "\033[1;33m"
+#define BLUE "\033[1;34m"
 #define MAGENTA "\033[1;35m"
-#define CYAN    "\033[1;36m"
+#define CYAN "\033[1;36m"
 
 #define piss pair<int, pair<string, string>> // piqa stands for pair of (integer question answer)
 #define ff first
 #define ss second
 
-class FEEDS: public Profile
+class FEEDS : public Profile
 {
 public:
     vector<piss> arr;
     int i = -1;
-
 
     void ReadFeed(void)
     {
@@ -44,13 +43,13 @@ public:
             Answer = "";
             try
             {
-                num = stoi(Number);     // string to integer
+                num = stoi(Number); // string to integer
             }
-            catch (const std::invalid_argument& e)
+            catch (const std::invalid_argument &e)
             {
                 // Handle the invalid argument exception (e.g., print an error message)
                 cerr << "Invalid argument: " << e.what() << endl;
-                // You might want to decide what to do in case of an error. 
+                // You might want to decide what to do in case of an error.
                 // For example, you could skip this line or terminate the program.
                 continue;
             }
@@ -77,10 +76,12 @@ public:
             i = 0;
         }
         // cout << arr[i].ff << endl;
-        cout <<YELLOW<<"Q. " <<arr[i].ss.ff <<RESET<< endl<<endl;
+        cout << YELLOW << "Q. " << arr[i].ss.ff << RESET << endl
+             << endl;
         if (arr[i].ss.ss != "")
         {
-            cout <<CYAN<< "Answer: "<<RESET<<endl <<arr[i].ss.ss << endl;
+            cout << CYAN << "Answer: " << RESET << endl
+                 << arr[i].ss.ss << endl;
         }
         cout << endl;
     }
@@ -92,11 +93,11 @@ public:
         {
             i = arr.size() - 1;
         }
-        // cout << arr[i].ff << endl;
-        cout <<YELLOW<<"Q. "<< arr[i].ss.ff<<RESET << endl<<endl;
+        cout << YELLOW << "Q. " << arr[i].ss.ff << RESET << endl
+             << endl;
         if (arr[i].ss.ss != "")
         {
-            cout <<BLUE<< "Answer: "<<RESET<<arr[i].ss.ss << endl;
+            cout << BLUE << "Answer: " << RESET << arr[i].ss.ss << endl;
         }
         cout << endl;
     }
@@ -104,9 +105,10 @@ public:
     void displayCurrent(void)
     {
         system("cls");
-        // cout << arr[i].ff << endl;
-        cout <<YELLOW<<"Q."<<arr[i].ss.ff<<RESET << endl<<endl;
-        cout << CYAN<<"Answer: "<<RESET<<endl <<arr[i].ss.ss << endl;
+        cout << YELLOW << "Q." << arr[i].ss.ff << RESET << endl
+             << endl;
+        cout << CYAN << "Answer: " << RESET << endl
+             << arr[i].ss.ss << endl;
     }
 
     int isAnswerGiven(void)
@@ -137,41 +139,14 @@ public:
         string str;
         write.open("feed.txt");
 
-        for(auto i: arr)
+        for (auto i : arr)
         {
-            write<<i.ff<<"\n";
-            write<<i.ss.ff<<"\n";
-            write<<i.ss.ss<<"\n";
+            write << i.ff << "\n";
+            write << i.ss.ff << "\n";
+            write << i.ss.ss << "\n";
         }
 
         write.close();
     }
-
-    // void displayCurrent(int k)
-    // {
-    //     // system("cls");
-    //     k--;
-    //     cout << arr[k].ff << endl;
-    //     cout <<arr[k].ss.ff << endl<<endl;
-    //     cout << "Answer: "<<arr[k].ss.ss << endl;
-    // }
-
-    // void userFeeds(string blog)
-    // {
-    //     ReadFeed();
-    //     stringstream ss(blog);
-    //     string num;
-    //     vector<int> blog_id;
-    //     while(ss >> num)
-    //     {
-    //         int id = stoi(num);
-    //         blog_id.push_back(id);
-    //     }
-
-    //     for(auto &m: blog_id)
-    //     {
-    //         displayCurrent(m);
-    //     }
-    // }
 };
-#endif  // FEEDS_H
+#endif // FEEDS_H
