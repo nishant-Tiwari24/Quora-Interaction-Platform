@@ -1,8 +1,6 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <conio.h>
-#include <cstdlib>
 // #include <ctime>
 #include <vector>
 #include <algorithm>
